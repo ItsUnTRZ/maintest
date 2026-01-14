@@ -1,4 +1,7 @@
 <h1>My Quests</h1>
+
+<%= link_to "New Quest", new_quest_path %>
+
 <ul>
   <% @quests.each do |quest| %>
     <li><%= link_to quest.name, quest_path(quest) %></li>
