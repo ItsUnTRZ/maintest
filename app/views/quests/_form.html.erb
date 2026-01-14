@@ -1,8 +1,4 @@
-<%= form_with(model: quest, class: "space-y-4") do |form| %>
-  <div>
-    <%= form.text_field :name, class: "border rounded px-3 py-2 w-full", placeholder: "Quest name" %>
-  </div>
-  <div>
-    <%= form.submit class: "bg-blue-500 text-white px-4 py-2 rounded cursor-pointer" %>
-  </div>
+<%= form_with(model: quest, class: "flex gap-3") do |form| %>
+  <%= form.text_field :name, class: "flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500", placeholder: "Enter quest name..." %>
+  <%= form.submit "Add Quest", class: "bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 cursor-pointer transition-colors" %>
 <% end %>
