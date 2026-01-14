@@ -43,10 +43,10 @@ RSpec.describe "Quests", type: :system do
 
   describe "deleting a quest" do
     it "removes the quest from the list" do
-      Quest.create!(name: "Delete Me")
+      quest = Quest.create!(name: "Delete Me")
       visit quests_path
       expect(page).to have_content("Delete Me")
-      click_link "Delete"
+      find("a[href='#{quest_path(quest)}'][data-turbo-method='delete']").click
       expect(page).not_to have_content("Delete Me")
     end
   end

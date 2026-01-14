@@ -1,51 +1,50 @@
 class QuestsController < ApplicationController
-  # GET /quests or /quests.json
+  before_action :set_quest, only: %i[ show destroy ]
+
   def index
     @quests = Quest.order(created_at: :desc)
+    @quest = Quest.new
   end
 
-  # GET /quests/1 or /quests/1.json
   def show
-    @quest = Quest.find(params[:id])
   end
 
-  # GET /quests/new
   def new
     @quest = Quest.new
   end
 
-  # POST /quests or /quests.json
   def create
-    @quest = Quest.create(quest_params)
+    @quest = Quest.new(quest_params)
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to quests_path }
+      if @quest.save
+        format.turbo_stream
+        format.html { redirect_to quests_path, notice: "Quest was successfully created." }
+        format.json { render :show, status: :created, location: @quest }
+      else
+        format.turbo_stream { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @quest.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  # PATCH/PUT /quests/1 or /quests/1.json
-  def update
-    @quest = Quest.find(params[:id])
-    @quest.update(quest_params)
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to quests_path }
-    end
-  end
-
-  # DELETE /quests/1 or /quests/1.json
   def destroy
-    @quest = Quest.find(params[:id])
-    @quest.destroy
+    @quest.destroy!
+    @quests = Quest.order(created_at: :desc)
+
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to quests_path }
+      format.html { redirect_to quests_path, notice: "Quest was successfully destroyed.", status: :see_other }
+      format.json { head :no_content }
     end
   end
 
   private
+    def set_quest
+      @quest = Quest.find(params[:id])
+    end
 
-  def quest_params
-    params.require(:quest).permit(:name, :is_done)
-  end
+    def quest_params
+      params.require(:quest).permit(:name, :is_done)
+    end
 end

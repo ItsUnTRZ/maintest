@@ -8,22 +8,22 @@ RSpec.describe "Brag", type: :system do
   describe "brag page" do
     it "displays the brag document" do
       visit brag_path
-      expect(page).to have_content("Brag Document")
+      expect(page).to have_content("My Brag Document")
     end
 
     it "shows goals section" do
       visit brag_path
-      expect(page).to have_content("Goals")
+      expect(page).to have_content("เป้าหมายของฉัน")
     end
 
     it "shows achievements section" do
       visit brag_path
-      expect(page).to have_content("Achievements")
+      expect(page).to have_content("ความสำเร็จที่ผ่านมา")
     end
 
     it "shows skills section" do
       visit brag_path
-      expect(page).to have_content("Skills")
+      expect(page).to have_content("ทักษะที่ฉันมี")
     end
 
     it "has a link back to home" do

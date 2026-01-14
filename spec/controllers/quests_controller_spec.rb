@@ -39,22 +39,6 @@ RSpec.describe QuestsController, type: :controller do
     end
   end
 
-  describe "PATCH #update" do
-    it "updates the quest" do
-      quest = Quest.create!(name: "Old Name")
-      patch :update, params: { id: quest.id, quest: { name: "New Name" } }, format: :html
-      quest.reload
-      expect(quest.name).to eq("New Name")
-    end
-
-    it "updates is_done status" do
-      quest = Quest.create!(name: "Test", is_done: false)
-      patch :update, params: { id: quest.id, quest: { is_done: true } }, format: :html
-      quest.reload
-      expect(quest.is_done).to be true
-    end
-  end
-
   describe "DELETE #destroy" do
     it "destroys the quest" do
       quest = Quest.create!(name: "To Delete")
