@@ -1,2 +1,5 @@
 <h1><%= @quest.name %></h1>
+
+<%= link_to "Edit", edit_quest_path(@quest) %>
+<%= link_to "Delete", quest_path(@quest), data: { turbo_method: :delete } %>
 <%= link_to "Back", quests_path %>

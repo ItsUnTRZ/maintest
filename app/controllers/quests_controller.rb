@@ -14,9 +14,28 @@ class QuestsController < ApplicationController
     @quest = Quest.new
   end
 
+  # GET /quests/1/edit
+  def edit
+    @quest = Quest.find(params[:id])
+  end
+
   # POST /quests or /quests.json
   def create
     @quest = Quest.create(quest_params)
+    redirect_to quests_path
+  end
+
+  # PATCH/PUT /quests/1 or /quests/1.json
+  def update
+    @quest = Quest.find(params[:id])
+    @quest.update(quest_params)
+    redirect_to quests_path
+  end
+
+  # DELETE /quests/1 or /quests/1.json
+  def destroy
+    @quest = Quest.find(params[:id])
+    @quest.destroy
     redirect_to quests_path
   end
 
