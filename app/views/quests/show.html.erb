@@ -2,7 +2,6 @@
   <h1 class="text-2xl font-bold mb-4"><%= @quest.name %></h1>
 
   <div class="space-x-2">
-    <%= link_to "Edit", edit_quest_path(@quest), class: "text-blue-500" %>
     <%= link_to "Delete", quest_path(@quest), data: { turbo_method: :delete }, class: "text-red-500" %>
     <%= link_to "Back", quests_path, class: "text-gray-500" %>
   </div>

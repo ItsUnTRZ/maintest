@@ -14,11 +14,6 @@ class QuestsController < ApplicationController
     @quest = Quest.new
   end
 
-  # GET /quests/1/edit
-  def edit
-    @quest = Quest.find(params[:id])
-  end
-
   # POST /quests or /quests.json
   def create
     @quest = Quest.create(quest_params)
