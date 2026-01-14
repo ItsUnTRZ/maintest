@@ -1,5 +1,5 @@
 class QuestsController < ApplicationController
-  before_action :set_quest, only: %i[ show destroy ]
+  before_action :set_quest, only: %i[ show update destroy ]
 
   def index
     @quests = Quest.order(created_at: :desc)
@@ -25,6 +25,14 @@ class QuestsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quest.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update
+    @quest.update(quest_params)
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to quests_path }
     end
   end
 

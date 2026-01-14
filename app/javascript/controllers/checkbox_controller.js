@@ -11,7 +11,7 @@ export default class extends Controller {
     if (!questItem) return
     
     // หา text element ที่จะขีดฆ่า
-    const textElement = questItem.querySelector('.text-lg.font-medium')
+    const textElement = questItem.querySelector('.font-medium')
     if (!textElement) return
     
     // Optimistic update: ขีดฆ่าหรือลบขีดฆ่าทันที
