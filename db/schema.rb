@@ -15,9 +15,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_14_025014) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "quests", force: :cascade do |t|
-    t.text "body"
+    t.string "name"
+    t.boolean "is_done", default: false
     t.datetime "created_at", null: false
-    t.string "title"
     t.datetime "updated_at", null: false
   end
 end
