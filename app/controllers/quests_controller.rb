@@ -22,21 +22,30 @@ class QuestsController < ApplicationController
   # POST /quests or /quests.json
   def create
     @quest = Quest.create(quest_params)
-    redirect_to quests_path
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to quests_path }
+    end
   end
 
   # PATCH/PUT /quests/1 or /quests/1.json
   def update
     @quest = Quest.find(params[:id])
     @quest.update(quest_params)
-    redirect_to quests_path
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to quests_path }
+    end
   end
 
   # DELETE /quests/1 or /quests/1.json
   def destroy
     @quest = Quest.find(params[:id])
     @quest.destroy
-    redirect_to quests_path
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to quests_path }
+    end
   end
 
   private

@@ -1,10 +1,9 @@
-<div id="<%= dom_id quest %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= quest.title %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Body:</strong>
-    <%= quest.body %>
-  </div>
-</div>
+<%= turbo_frame_tag quest do %>
+  <li id="<%= dom_id(quest) %>" class="border p-3 rounded flex justify-between items-center">
+    <%= link_to quest.name, quest_path(quest) %>
+    <div class="space-x-2">
+      <%= link_to "Edit", edit_quest_path(quest), class: "text-blue-500" %>
+      <%= link_to "Delete", quest_path(quest), data: { turbo_method: :delete }, class: "text-red-500" %>
+    </div>
+  </li>
+<% end %>
