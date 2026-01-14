@@ -51,6 +51,6 @@ class QuestsController < ApplicationController
   private
 
   def quest_params
-    params.require(:quest).permit(:name)
+    params.require(:quest).permit(:name, :is_done)
   end
 end

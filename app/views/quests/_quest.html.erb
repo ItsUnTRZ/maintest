@@ -1,6 +1,13 @@
 <%= turbo_frame_tag quest do %>
   <li id="<%= dom_id(quest) %>" class="border p-3 rounded flex justify-between items-center">
-    <%= link_to quest.name, quest_path(quest) %>
+    <div class="flex items-center space-x-2">
+      <%= form_with model: quest, method: :patch, data: { controller: "checkbox" } do |f| %>
+        <%= f.check_box :is_done, data: { action: "change->checkbox#submit" }, class: "w-4 h-4" %>
+      <% end %>
+      <span class="<%= quest.is_done? ? 'line-through text-gray-400' : '' %>">
+        <%= link_to quest.name, quest_path(quest) %>
+      </span>
+    </div>
     <div class="space-x-2">
       <%= link_to "Edit", edit_quest_path(quest), class: "text-blue-500" %>
       <%= link_to "Delete", quest_path(quest), data: { turbo_method: :delete }, class: "text-red-500" %>
